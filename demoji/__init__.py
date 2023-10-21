@@ -20,7 +20,6 @@ import os.path
 import re
 import sys
 import warnings
-import datetime
 import json
 import pathlib
 import re
@@ -185,14 +184,17 @@ def set_emoji_pattern():
         _CODE_TO_DESC.update(codes)
 
 
-parent = pathlib.Path('./demoji')
+parent = pathlib.Path(os.path.dirname(os.path.abspath(__file__)))
 CACHEPATH = parent / "codes.json"
 MODULEPATH = parent / "__init__.py"
 
 
 def download_codes(dest=CACHEPATH):
+    # Ensure the target directory exists
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+
     codes = dict(stream_unicodeorg_emojifile(URL))
-    _write_codes(codes, CACHEPATH)
+    _write_codes(codes, dest)
 
 
 def _write_codes(codes, dest):
