@@ -4,15 +4,6 @@ The set of emojis is refreshable from its canonical source at
 http://www.unicode.org/emoji/charts/full-emoji-list.html.
 """
 
-__all__ = (
-    "findall",
-    "findall_list",
-    "last_downloaded_timestamp",
-    "replace",
-    "replace_with_desc",
-)
-__version__ = "1.1.0"
-
 import datetime
 import functools
 import logging
@@ -22,7 +13,6 @@ import sys
 import warnings
 import json
 import pathlib
-import re
 import time
 import colorama
 import requests
@@ -32,6 +22,16 @@ try:
     import ujson as json
 except ImportError:
     import json
+
+__all__ = (
+    "findall",
+    "findall_list",
+    "last_downloaded_timestamp",
+    "replace",
+    "replace_with_desc",
+)
+__version__ = "1.1.0"
+
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
